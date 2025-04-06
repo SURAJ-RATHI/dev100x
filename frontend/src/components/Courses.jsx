@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import axios for API call
 import { FaCircleUser } from "react-icons/fa6";
@@ -18,6 +17,7 @@ function Courses() {
   const [courses, setCourses] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to toggle sidebar
 
   console.log("courses: ", courses);
@@ -36,14 +36,22 @@ function Courses() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
+        setLoading(true);
+        setError(null);
         const response = await axios.get(`${BACKEND_URL}/course/courses`, {
           withCredentials: true,
         });
-        console.log(response.data.courses);
-        setCourses(response.data.courses);
-        setLoading(false);
+        console.log("API Response:", response.data);
+        if (response.data && response.data.courses) {
+          setCourses(response.data.courses);
+        } else {
+          setError("No courses found");
+        }
       } catch (error) {
-        console.log("error in fetchCourses ", error);
+        console.error("Error in fetchCourses:", error);
+        setError(error.response?.data?.errors || "Failed to fetch courses");
+      } finally {
+        setLoading(false);
       }
     };
     fetchCourses();
@@ -91,24 +99,24 @@ function Courses() {
         <nav>
           <ul>
             <li className="mb-4">
-              <a href="/" className="flex items-center">
+              <Link to="/" className="flex items-center">
                 <RiHome2Fill className="mr-2" /> Home
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="#" className="flex items-center text-blue-500">
+              <Link to="/courses" className="flex items-center text-blue-500">
                 <FaDiscourse className="mr-2" /> Courses
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/purchases" className="flex items-center">
+              <Link to="/purchases" className="flex items-center">
                 <FaDownload className="mr-2" /> Purchases
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="#" className="flex items-center">
+              <Link to="#" className="flex items-center">
                 <IoMdSettings className="mr-2" /> Settings
-              </a>
+              </Link>
             </li>
             <li>
               {isLoggedIn ? (
@@ -152,11 +160,22 @@ function Courses() {
         {/* Vertically Scrollable Courses Section */}
         <div className="overflow-y-auto h-[75vh]">
           {loading ? (
-            <p className="text-center text-gray-500">Loading...</p>
+            <div className="flex justify-center items-center h-full">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          ) : error ? (
+            <div className="text-center text-red-500 p-4">
+              <p>{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Retry
+              </button>
+            </div>
           ) : courses.length === 0 ? (
-            // Check if courses array is empty
             <p className="text-center text-gray-500">
-              No course posted yet by admin
+              No courses available at the moment
             </p>
           ) : (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -165,11 +184,20 @@ function Courses() {
                   key={course._id}
                   className="border border-gray-200 rounded-lg p-4 shadow-sm"
                 >
-                  <img
-                    src={course.image.url}
-                    alt={course.title}
-                    className="rounded mb-4"
-                  />
+                  {course?.image?.url ? (
+                    <img
+                      src={course.image.url}
+                      alt={course.title}
+                      className="rounded mb-4 w-full h-48 object-cover"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/300x200?text=No+Image';
+                      }}
+                    />
+                  ) : (
+                    <div className="rounded mb-4 w-full h-48 bg-gray-200 flex items-center justify-center">
+                      <span className="text-gray-500">No Image Available</span>
+                    </div>
+                  )}
                   <h2 className="font-bold text-lg mb-2">{course.title}</h2>
                   <p className="text-gray-600 mb-4">
                     {course.description.length > 100
@@ -182,6 +210,12 @@ function Courses() {
                       <span className="text-gray-500 line-through">5999</span>
                     </span>
                     <span className="text-green-600">20% off</span>
+                  </div>
+
+                  {/* Creator name */}
+                  <div className="flex items-center mb-4 text-gray-600">
+                    <FaCircleUser className="mr-2" />
+                    <span>{course.creatorId?.username || course.creatorId?.name || 'Admin'}</span>
                   </div>
 
                   {/* Buy page */}

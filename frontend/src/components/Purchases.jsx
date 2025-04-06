@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -150,10 +149,10 @@ function Purchases() {
         {/* Render purchases */}
         {purchases.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {purchases.map((purchase, index) => (
+            {purchases.map((purchase) => (
               <div
-                key={index}
-                className="bg-white rounded-lg shadow-md p-6 mb-6"
+                key={purchase._id}
+                className="bg-white rounded-lg shadow-md p-6 mb-6 hover:shadow-lg transition-shadow"
               >
                 <div className="flex flex-col items-center space-y-4">
                   {/* Course Image */}
@@ -175,6 +174,12 @@ function Purchases() {
                       ${purchase.price} only
                     </span>
                   </div>
+                  <Link
+                    to={`/view-course/${purchase._id}`}
+                    className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-center"
+                  >
+                    View Course
+                  </Link>
                 </div>
               </div>
             ))}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../utils/utils";
-import { FaArrowLeft, FaVideo, FaFilePdf } from "react-icons/fa";
+import { FaArrowLeft, FaVideo, FaFilePdf, FaSun, FaMoon } from "react-icons/fa";
 
 function ViewCourse() {
   const { courseId } = useParams();
@@ -11,6 +11,26 @@ function ViewCourse() {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Toggle dark mode
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark');
+  };
+
+  useEffect(() => {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -91,19 +111,32 @@ function ViewCourse() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} py-8`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Back button */}
-        <button
-          onClick={() => navigate("/purchases")}
-          className="flex items-center text-blue-600 hover:text-blue-800 mb-6"
-        >
-          <FaArrowLeft className="mr-2" />
-          Back to Purchases
-        </button>
+        {/* Header with back button and theme toggle */}
+        <div className="flex justify-between items-center mb-6">
+          <button
+            onClick={() => navigate("/purchases")}
+            className="flex items-center text-blue-600 hover:text-blue-800"
+          >
+            <FaArrowLeft className="mr-2" />
+            Back to Purchases
+          </button>
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-200'} transition-colors duration-300`}
+            aria-label="Toggle theme"
+          >
+            {isDarkMode ? (
+              <FaSun className="text-yellow-400 text-xl" />
+            ) : (
+              <FaMoon className="text-gray-600 text-xl" />
+            )}
+          </button>
+        </div>
 
         {/* Course Header */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6 mb-8`}>
           <div className="flex flex-col md:flex-row gap-6">
             <div className="md:w-1/3">
               <img
@@ -123,7 +156,7 @@ function ViewCourse() {
         </div>
 
         {/* Course Content */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-md p-6`}>
           <h2 className="text-2xl font-semibold mb-6">Course Content</h2>
           {course.content && course.content.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

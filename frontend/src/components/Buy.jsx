@@ -139,7 +139,7 @@ function Buy() {
           <div className="bg-red-100 text-red-700 px-6 py-4 rounded-lg">
             <p className="text-lg font-semibold">{error}</p>
             <Link
-              className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition duration-200 mt-3 flex items-center justify-center"
+              className="w-full bg-blue-400 text-white py-2 rounded-md hover:bg-blue-500 transition duration-200 mt-3 flex items-center justify-center"
               to={"/purchases"}
             >
               Purchases
@@ -204,7 +204,7 @@ function Buy() {
                 )}
               </div>
 
-              <button className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition duration-200 mt-3 flex items-center justify-center">
+              <button className="w-full bg-blue-400 text-white py-2 rounded-md hover:bg-blue-500 transition duration-200 mt-3 flex items-center justify-center">
                 <span className="mr-2">🅿️</span> Other Payments Method
               </button>
             </div>

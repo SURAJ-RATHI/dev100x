@@ -44,8 +44,12 @@ export const createCourse = async (req, res) => {
     const content = [];
     if (req.files.content) {
       const contentFiles = Array.isArray(req.files.content) ? req.files.content : [req.files.content];
+      const contentMetadataArray = Array.isArray(req.body.contentMetadata) ? req.body.contentMetadata : [req.body.contentMetadata];
       
-      for (const file of contentFiles) {
+      for (let i = 0; i < contentFiles.length; i++) {
+        const file = contentFiles[i];
+        const metadata = contentMetadataArray[i] ? JSON.parse(contentMetadataArray[i]) : null;
+        
         try {
           // Validate file size (max 500MB for videos)
           if (file.mimetype.startsWith('video/') && file.size > 500 * 1024 * 1024) {
@@ -69,7 +73,8 @@ export const createCourse = async (req, res) => {
           
           content.push({
             type: resourceType === 'video' ? 'video' : 'pdf',
-            title: file.name,
+            title: metadata?.title || `Lecture ${i + 1}`,
+            description: metadata?.description || '',
             file: {
               public_id: fileResponse.public_id,
               url: fileResponse.url,

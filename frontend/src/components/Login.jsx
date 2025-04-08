@@ -47,8 +47,8 @@ function Login() {
         <header className="absolute top-0 left-0 w-full flex justify-between items-center p-5  ">
           <div className="flex items-center space-x-2">
             <img src={logo} alt="Logo" className="w-10 h-10 rounded-full" />
-            <Link to={"/"} className="text-xl font-bold text-orange-500">
-              CourseHaven
+            <Link to={"/"} className="text-xl font-bold text-blue-400">
+            DEV100X 
             </Link>
           </div>
           <div className="flex items-center space-x-4">
@@ -60,7 +60,7 @@ function Login() {
             </Link>
             <Link
               to={"/courses"}
-              className="bg-orange-500 p-1 text-sm md:text-md md:py-2 md:px-4 rounded-md"
+              className="bg-blue-400 p-1 text-sm md:text-md md:py-2 md:px-4 rounded-md"
             >
               Join now
             </Link>
@@ -70,7 +70,7 @@ function Login() {
         {/* Login Form */}
         <div className="bg-gray-900 p-8 rounded-lg shadow-lg w-[500px] m-8 md:m-0 mt-20">
           <h2 className="text-2xl font-bold mb-4 text-center">
-            Welcome to <span className="text-orange-500">CourseHaven</span>
+            Welcome to <span className="text-blue-400">DEV100X</span>
           </h2>
           <p className="text-center text-gray-400 mb-6">
             Log in to access paid content!
@@ -117,7 +117,7 @@ function Login() {
             )}
             <button
               type="submit"
-              className="w-full bg-orange-500 hover:bg-blue-600 text-white py-3 px-6 rounded-md transition"
+              className="w-full bg-blue-400 hover:bg-blue-500 text-white py-3 px-6 rounded-md transition"
             >
               Login
             </button>

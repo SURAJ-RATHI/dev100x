@@ -1,4 +1,4 @@
-# 🚀 ** Dev100X – Upskill Faster, Build Smarter **
+# 🚀  Dev100X – Upskill Faster, Build Smarter 
 
 [![LinkedIn](https://img.shields.io/badge/-Connect-blue?style=flat-square&logo=linkedin&link=https://www.linkedin.com/in/suraj127021/)](https://www.linkedin.com/in/suraj127021/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

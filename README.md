@@ -119,12 +119,14 @@ Frontend will run on: [http://localhost:5173]([url](http://localhost:5173))
 
 Backend will run on: [http://localhost:5000]([url](http://localhost:5000))
 
-### 5.Future Scope:
-  a. User dashboard and course tracking
-  b. Ratings, reviews, and Q&A discussion
-  c. Certification after course completion
-  d. Real-time notifications with WebSockets
-  e. Live Class.
+### 5. Future Scope
+
+- 🚀 **User dashboard and course tracking**  
+- ⭐ **Ratings, reviews, and Q&A discussion**  
+- 🎓 **Certification after course completion**  
+- 🔔 **Real-time notifications with WebSockets**  
+- 📺 **Live Classes**
+
 ---
 ### 👨‍💻 Author
 [Suraj Rathi](https://www.linkedin.com/in/suraj127021)

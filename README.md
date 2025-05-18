@@ -72,21 +72,24 @@ dev100x/
 ```bash
 git clone https://github.com/SURAJ-RATHI/dev100x.git
 cd dev100x
+```
 ---
 ### 2. Install dependencies
-Backend
+# Backend
 ```bash
 cd backend
 npm install
+```
 ---
 
-Frontend
+# Frontend
 ```bash
 cd ../frontend
 npm install
+```
 ---
 ### 3. ENV file example(../backend)
-```bash
+```env
 PORT=5000
 FRONTEND_URL=http://localhost:5173
 MONGO_URI=your_mongodb_connection_string
@@ -98,19 +101,22 @@ api_secret=your_cloudinary_api_secret
 JWT_USER_PASSWORD=your_jwt_user_secret
 JWT_ADMIN_PASSWORD=your_jwt_admin_secret
 NODE_ENV=development
+```
 ---
 ### 4.🛠️ Running the App
-Start Backend
+# Start Backend
 ```bash
 npm start
+```
 ---
-Start Frontend
+# Start Frontend
 ```bash
 npm run dev
+```
 ---
-Frontend will run on: http://localhost:5173
+Frontend will run on: [http://localhost:5173]([url](http://localhost:5173))
 
-Backend will run on: http://localhost:5000
+Backend will run on: [http://localhost:5000]([url](http://localhost:5000))
 
 ### 5.Future Scope:
   a. User dashboard and course tracking
@@ -120,8 +126,7 @@ Backend will run on: http://localhost:5000
   e. Live Class.
 ---
 ### 👨‍💻 Author
-[Suraj Rathi
-LinkedIn](www.linkedin.com/in/suraj127021) 
+[Suraj Rathi](www.linkedin.com/in/suraj127021)
 
 
 

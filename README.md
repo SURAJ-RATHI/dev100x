@@ -9,16 +9,17 @@ Dev100X is a full-stack EdTech platform that helps developers access curated vid
 
 ## 📸 Demo Preview
 
-> Demo video coming soon...
+> [Watch the demo video here](https://www.linkedin.com/posts/suraj127021_someone-recently-asked-why-i-havent-shared-activity-7328480445514285058-vTP0?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD9N6twBN5tSJvGx0XRTcdYyi81asxQIyyg)
 
 ---
+
 
 ## 🔧 Tech Stack
 
 - **Frontend**: React.js, Tailwind CSS, ShadCN UI, Zod  
 - **Backend**: Node.js, Express.js, MongoDB Atlas  
 - **Cloud & Payments**: Cloudinary, Stripe (testing purpose) 
-- **Dev Tools**: PNPM, Postman, Notion
+- **Dev Tools**: NPM, Postman, Notion
 
 ---
 
@@ -62,7 +63,7 @@ dev100x/
 ├── .env.example         # Sample environment file
 ├── README.md            # You’re reading it!
 └── package.json         # Project metadata
-
+```
 ---
 
 ## 🧪 Getting Started Locally
@@ -126,7 +127,8 @@ Backend will run on: [http://localhost:5000]([url](http://localhost:5000))
   e. Live Class.
 ---
 ### 👨‍💻 Author
-[Suraj Rathi](www.linkedin.com/in/suraj127021)
+[Suraj Rathi](https://www.linkedin.com/in/suraj127021)
+
 
 
 

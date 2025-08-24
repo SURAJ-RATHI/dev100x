@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: dev100x-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: cloud_name
+        sync: false
+      - key: api_key
+        sync: false
+      - key: api_secret
+        sync: false
+      - key: JWT_USER_PASSWORD
+        sync: false
+      - key: JWT_ADMIN_PASSWORD
+        sync: false
+      - key: Google_API_key
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
